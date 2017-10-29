@@ -1,0 +1,287 @@
+/**/
+* {
+    box-sizing:border-box;
+}
+body,html{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+body{
+    background-color: #ffefb2;
+}
+.logo-img {
+    margin-top: 10%;
+    height: 20%;
+}
+.logo-img img {
+    height: 80%;
+    width: auto;
+}
+.home-img {
+    height: 50%;
+    display: flex;
+    justify-content: center;
+}
+.home-img img {
+    height: 100%;
+    width: auto;
+}
+/*パピコの全体像（大きさ）の設定*/
+.papico-main {
+    margin-top: 10%;
+    width: 100%;
+    height: 70%;/*この値を調整でパピコ2つの画面に対する大きさを設定*/
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+/*パピコ左（蓋＋本体）*/
+.wrap-left-papico {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+/*パピコ右（蓋＋本体）*/
+.wrap-right-papico {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.top-left {
+    margin-right: -21.6%;
+    height: 21.2%;
+    z-index: 3;
+}
+.bottom-left {
+    margin-top: -3.5%;
+    height: 75%;
+    position: relative;
+}
+.top-right {
+    margin-left: -23.0%;
+    height: 25.8%;
+    z-index: 3;
+}
+.bottom-right {
+    margin-top: -22.5%;
+    margin-left: -1.7%;
+    height: 75%;
+    position: relative;
+}
+.center-line {
+    position: absolute;
+    top: 20%;
+    left: -2%;
+    margin: auto;
+    height: 66.5vw;
+    width: 2px;
+    background-color: #ffefb2;
+    z-index: 2;
+}
+
+img {
+    height: 100%;
+}
+
+/*中身の色はここで*/
+.wrap-left-color-block {
+    height: 99.6%;
+    width: 98%;
+    position: absolute;
+    top: 0.3%;
+    left: 1%;
+    display: flex;
+    flex-direction: column;
+    z-index: -1;
+}
+.wrap-right-color-block {
+    height: 99.5%;
+    width: 98%;
+    position: absolute;
+    top: 0.22%;
+    left: 0.5%;
+    display: flex;
+    flex-direction: column;
+    z-index: -1;
+}
+.phone-block {
+    flex: 1;
+    background-color: #cc8859;
+}
+.mail-block {
+    flex: 1;
+    background-color: #d6d200;
+}
+.line-block {
+    flex: 1;
+    background-color: #01b901;
+}
+.twitter-block {
+    flex: 1;
+    background-color: #1da1f2;
+}
+.facebook-block {
+    flex: 1;
+    background-color: #3b5998;
+}
+.instagram-block {
+    flex: 1;
+    background-color: #e80820;
+}
+.unknown-block {
+    flex: 1;
+    background-color: #000;
+}
+
+
+.wrap-choices {
+    height: 100%;
+}
+.inner-first-choices {
+    margin-top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.inner-second-choices {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+label{
+    text-align: center;
+    padding: 10px 0;
+    color: white;
+    background-color: #aaa;
+    width: 30%;
+    border: 0.5px white solid;
+}
+input[type="checkbox"]{
+    display: none;
+    width: 100%;
+}
+.check_box:checked + .phone {
+  background-color: #cc8859;
+}
+.check_box:checked + .mail {
+  background-color: #d6d200;
+}
+.check_box:checked + .line {
+  background-color: #01b901;
+}
+.check_box:checked + .twitter {
+  background-color: #1da1f2;
+}
+.check_box:checked + .facebook {
+  background-color: #3b5998;
+}
+.check_box:checked + .instagram {
+  background-color: #e80820;
+}
+
+.wrap-btn {
+    height: 8%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.complete-btn{
+    height: 100%;
+    width: 30%;
+    text-decoration: none;
+    background: #FF69A3;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #FF367F;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 3px;
+    margin-top: 1%;
+}
+.complete-btn:active {/*ボタンを押したとき*/
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+.cap-left{
+    transform-origin: 5% 98%;
+}
+.cap-right{
+    transform-origin: 97% 79%;
+}
+.contact-main-container{
+    position: absolute;
+    width: 50%;
+    height: auto;
+    top: 15%;
+    left: 5%;
+    z-index: 10;
+}
+.contact-main-container img{
+    width: 10vw;
+    height: 10vw;
+}
+.contact-container{
+    display: flex;
+    flex-wrap: wrap;
+    width:100%;
+    height: auto;
+    margin-bottom: 10%; 
+    background-color: #ffe8ae;
+    padding: 3%;
+    border: solid 1px #b77a47;
+    border-radius: 20px;
+}
+.id-label{
+    width:78%;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    padding-left: 5%; 
+}
+.start-btn-container{
+    width: 60%;
+    margin: 0 auto;
+}
+.start-btn{
+    width: auto;
+    background-color: #ffb642;
+    border-radius: 20px;
+    border: solid 2px #ff9d00;
+    text-align: center;
+    padding: 5%;
+    margin-top: 5%;
+    color: white;
+}
+.yajirusi{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 11;
+}
+.yajirusi img{
+    width: 10vw;
+}
+.hatena-left-img {
+    width: 50%;
+    height: auto;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 30%;
+    margin: auto;
+}
+.hatena-right-img {
+    width: 57%;
+    height: auto;
+    position: absolute;
+    left: 19.5%;
+    top: 30%;
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <meta name="format-detection" content="telephone=no">
+    <script src="components/loader.js"></script>
+    <script src="lib/onsenui/js/onsenui.min.js"></script>
+    
+    
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+    <link rel="stylesheet" href="css/setting.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/edit.js"></script>
+    <script src="js/jquery.pageswitch.js"></script>
+    <script src="./js/initialize.js"></script>
+    <script>
+        var userid;
+        initialize();
+        
+    </script>
+    <script>
+        var userid = null;
+        $(document).load(function(){
+            
+            //$('.wrap-left-color-block').prepend('<div class="phone-block" style="background: linear-gradient(#cc8859, #8f6024);"></div>');
+            //$('.wrap-right-color-block').prepend('<div class="phone-block" style="background: linear-gradient(#cc8859, #8f6024);"></div>');
+            
+        });
+        $(document).on('click','#half',function(){
+            var contactList = JSON.parse(localStorage.getItem("contactList"));
+            //location.href = './papico.html';
+            if(contactList.userName){
+                if(contactList.line !== null || contactList.twitter !== null || contactList.instagram !== null || contactList.facebook !== null || contactList.phone !== null || contactList.mail !== null){
+                    location.href = './qr.html';
+                } else{
+                    alert('未設定項目があります。');
+                }
+            } else{
+                alert('ユーザ名の入力は必須です。');
+            }
+        });
+        function onLoad() {
+            document.addEventListener("deviceready", onDeviceReady, false);
+        }
+        function onDeviceReady() {
+           navigator.splashscreen.show();
+        }
+    </script>
+        
+    </head>
+<body>
+  <ons-navigator var="navi" id="navigator" page="home.html"></ons-navigator>
+  
+  <ons-template id="home.html">
+    <ons-page id="home-page">
+      <div class="content" style="text-align: center">
+        <div class="logo-img">
+            <img src="img/logo_itech.png">
+        </div>
+        <div class="home-img">
+            <img src="img/papico_home.png">
+        </div>
+        
+        <div class="start-btn-container">
+            
+            <div class="start-btn" id="half">
+                パピコはんぶんこ！
+            </div>
+            <div class="start-btn" onclick="document.querySelector('#navigator').pushPage('edit.html', { animation : 'slide' } )">
+                設定
+            </div>
+        </div>
+      </div>
+    </ons-page>
+  </ons-template>
+  
+  <ons-template id="edit.html">
+    <ons-page id="first-page">
+      <ons-toolbar var="nav" style="background-color:#ffbb28">
+      <div class="left"><ons-back-button>戻る</ons-back-button></div>
+        <div class="center">設定</div>
+      </ons-toolbar>
+
+      <div class="content" style="text-align: center">
+        
+        <ons-list-header style="background-color:#e2daac">変更したい項目を選んでください</ons-list-header>
+        <div class="user-infomation" onclick="document.querySelector('#navigator').pushPage('user.html', { animation : 'slide' } )">
+            <p style="margin-top:10px; margin-bottom: 10px; padding: 0;">ユーザ名を入力してください。</p>
+            <img src="img/right2.png">
+        </div>
+        <ons-list-item modifier="chevron" onclick="document.querySelector('#navigator').pushPage('phone.html', { animation : 'slide' } )"><img src="./img/phone.png">電話番号</ons-list-item>
+        <ons-list-item modifier="chevron" onclick="document.querySelector('#navigator').pushPage('mail.html', { animation : 'slide' } )"><img src="./img/mail.png">メールアドレス</ons-list-item>
+        <ons-list-item modifier="chevron" onclick="document.querySelector('#navigator').pushPage('line.html', { animation : 'slide' } )"><img src="./img/line.png">LINE</ons-list-item>
+        <ons-list-item modifier="chevron" onclick="document.querySelector('#navigator').pushPage('twitter.html', { animation : 'slide' } )"><img src="./img/twitter.png">Twitter</ons-list-item>
+        <ons-list-item modifier="chevron" onclick="document.querySelector('#navigator').pushPage('facebook.html', { animation : 'slide' } )"><img src="./img/facebook.png">Facebook</ons-list-item>
+        <ons-list-item modifier="chevron" onclick="document.querySelector('#navigator').pushPage('instagram.html', { animation : 'slide' } )"><img src="./img/instagram.png">Instagram</ons-list-item>
+      </div>
+    </ons-page>
+  </ons-template>
+  
+  <ons-template id="user.html">
+    <ons-page id="second-page">
+      <ons-toolbar style="background-color:#ffbb28">
+        <div class="left"><ons-back-button>戻る</ons-back-button></div>
+        <div class="center">ユーザ名</div>
+      </ons-toolbar>
+
+      <div class="content" style="text-align: center">
+        <input type="text" id="user-name-text" placeholder="にわかめんたいこ">
+        <button onClick="userNameEdit();" id="user-name-save">保存</button>
+      </div>
+    </ons-page>
+  </ons-template>
+
+  <ons-template id="phone.html">
+    <ons-page id="second-page">
+      <ons-toolbar style="background-color:#ffbb28">
+        <div class="left"><ons-back-button>戻る</ons-back-button></div>
+        <div class="center">電話番号</div>
+      </ons-toolbar>
+
+      <div class="content" style="text-align: center">
+        <input type="text" id="phone-text" placeholder="09011111111">
+        <button onClick="phoneEdit();" id="phone-save">保存</button>
+      </div>
+    </ons-page>
+  </ons-template>
+  
+  <ons-template id="mail.html">
+    <ons-page id="second-page">
+      <ons-toolbar style="background-color:#ffbb28">
+        <div class="left"><ons-back-button>戻る</ons-back-button></div>
+        <div class="center">メールアドレス</div>
+      </ons-toolbar>
+
+      <div class="content" style="text-align: center">
+        <input type="text" id="mail-text" placeholder="example@mentaiko.com">
+        <button onClick="mailEdit(); " id="mail-save">保存</button>
+      </div>
+    </ons-page>
+  </ons-template>
+  
+  <ons-template id="line.html">
+    <ons-page id="second-page">
+      <ons-toolbar style="background-color:#ffbb28">
+        <div class="left"><ons-back-button>戻る</ons-back-button></div>
+        <div class="center">LINE</div>
+      </ons-toolbar>
+
+      <div class="content" style="text-align: center">
+        <input type="text" id="line-text" placeholder="Mentaiko">
+        <button onClick="lineEdit(); " id="line-save">保存</button>
+      </div>
+    </ons-page>
+  </ons-template>
+  
+  <ons-template id="twitter.html">
+    <ons-page id="second-page">
+      <ons-toolbar style="background-color:#ffbb28">
+        <div class="left"><ons-back-button>戻る</ons-back-button></div>
+        <div class="center">Twitter</div>
+      </ons-toolbar>
+
+      <div class="content" style="text-align: center">
+        <input type="text" id="twitter-text" placeholder="@mentaiko">
+        <button onClick="twitterEdit(); " id="twitter-save">保存</button>
+      </div>
+    </ons-page>
+  </ons-template>
+  
+  <ons-template id="facebook.html">
+    <ons-page id="second-page">
+      <ons-toolbar style="background-color:#ffbb28">
+        <div class="left"><ons-back-button>戻る</ons-back-button></div>
+        <div class="center">Facebook</div>
+      </ons-toolbar>
+
+      <div class="content" style="text-align: center">
+        <input type="text" id="facebook-text" placeholder="Mentaiko">
+        <button onClick="facebookEdit(); " id="facebook-save">保存</button>
+      </div>
+    </ons-page>
+  </ons-template>
+  
+  <ons-template id="instagram.html">
+    <ons-page id="second-page">
+      <ons-toolbar style="background-color:#ffbb28">
+        <div class="left"><ons-back-button>戻る</ons-back-button></div>
+        <div class="center">Instagram</div>
+      </ons-toolbar>
+
+      <div class="content" style="text-align: center">
+        <input type="text" id="instagram-text" placeholder="Mentaiko">
+        <button onClick="instagramEdit(); " id="instagram-save">保存</button>
+      </div>
+    </ons-page>
+  </ons-template>
+</body>
+</html>
